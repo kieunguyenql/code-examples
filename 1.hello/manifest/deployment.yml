@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  flask-hello
+  namespace: applications
+  labels:
+    app:  flask-hello-word
+spec:
+  selector:
+    matchLabels:
+      app: flask-hello
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app:  flask-hello
+    spec:
+      containers:
+      - name:  flask-hello
+        image:  kieunguyenql/flask-hello:latest
+        ports:
+        - containerPort:  500
+          name:  hello-port
